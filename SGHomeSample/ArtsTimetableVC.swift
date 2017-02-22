@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ArtsTimetableVC: UITableViewController {
 
-    @IBOutlet weak var English: UITableViewCell!
+
+class ArtsTimetableVC: UIViewController {
     
-    @IBOutlet weak var Spanish: UITableViewCell!
+    let urlWebsite: String? = nil
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +26,22 @@ class ArtsTimetableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func English(sender: Any?) {
-        self.performSegue(withIdentifier: "ArtsVC2", sender: "https://www.google.com")
+    @IBAction func Spanish(_ sender: Any) {
+        let urlWebsite = "https://www.google.ie"
+        self.performSegue(withIdentifier: "ArtsVC2", sender: urlWebsite)
     }
-
+    
+    @IBAction func English(_ sender: Any) {
+        let urlWebsite = "https://stackoverflow.com/questions/32038226/error-thread-1-breakpoint-2-1"
+        self.performSegue(withIdentifier: "ArtsVC2", sender: urlWebsite)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let websiteController = segue.destination as! ArtsVC2
-        websiteController.urlWebsite = sender as? String
+        if let destination = segue.destination as? ArtsVC2{
+            if let urlWebsite = sender as?  String{
+                destination.urlWebsite = urlWebsite
+            }
+        }
     }
-
-
 
 }

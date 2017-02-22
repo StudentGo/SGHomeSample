@@ -12,16 +12,27 @@ class ArtsVC2: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
-    var urlWebsite: String?
+    private var _urlWebsite: String!
+    
+    var urlWebsite: String{
+        get {
+            return _urlWebsite
+        } set {
+            _urlWebsite = newValue
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlString = urlWebsite
+        //let _urlWebsite = "https://www.google.ie"
+        let urlString = _urlWebsite
         let otherURL = NSURL(string: urlString!)
         let URLRequest = NSURLRequest(url: otherURL as! URL)
         webView.loadRequest(URLRequest as URLRequest)
 
         // Do any additional setup after loading the view.
     }
+    
+    
 }
